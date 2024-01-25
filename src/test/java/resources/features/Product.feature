@@ -12,3 +12,10 @@ Feature: Store Products
     And The product does not exist in the store
     When The user is going to add a product to the store
     Then The product must be added successfully
+
+  Scenario: Deleting a product from the store
+    Given The store already has registered many products
+    And The product "Power Bank" is registered in the store
+    When The user deletes the product "Power Bank" from the store
+    Then The product "Power Bank" should be removed from the store
+    And The store should have three less product

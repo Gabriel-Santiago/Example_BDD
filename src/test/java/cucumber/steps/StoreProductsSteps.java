@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.springframework.test.util.AssertionErrors.assertTrue;
+import static org.springframework.test.util.AssertionErrors.*;
 
 
 @CucumberContextConfiguration
@@ -79,5 +79,36 @@ public class StoreProductsSteps {
     public void theProductMustBeAddedSuccessfully() {
         assertTrue("The product must be added successfully",
                 products.isProductRegistered("Power Bank"));
+    }
+
+    @Given("The store already has registered many products")
+    public void theStoreAlreadyHasRegisteredManyProducts() {
+        products = new ProductController();
+        products.addRegisteredProduct("Smartphone");
+        products.addRegisteredProduct("Headset");
+        products.addRegisteredProduct("Power Bank");
+    }
+
+    @And("The product {string} is registered in the store")
+    public void theProductIsRegisteredInTheStore(String arg0) {
+        assertTrue("The product {string} is registered in the store",
+                products.isProductRegistered(arg0));
+    }
+
+    @When("The user deletes the product {string} from the store")
+    public void theUserDeletesTheProductFromTheStore(String arg0) {
+        products.deleteProduct(arg0);
+    }
+
+    @Then("The product {string} should be removed from the store")
+    public void theProductShouldBeRemovedFromTheStore(String arg0) {
+        assertFalse("The product {string} is registered in the store",
+                products.isProductRegistered(arg0));
+    }
+
+    @And("The store should have three less product")
+    public void theStoreShouldHaveThreeLessProduct() {
+        assertEquals("The store should have three less product",
+                2, products.getProductCount());
     }
 }

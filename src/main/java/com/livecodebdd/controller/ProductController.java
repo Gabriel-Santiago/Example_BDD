@@ -37,4 +37,8 @@ public class ProductController {
     public int getProductCount(){
         return products.size();
     }
+
+    public boolean deleteProduct(String product){
+        return products.remove(product);
+    }
 }
