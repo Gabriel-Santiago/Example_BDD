@@ -1,9 +1,8 @@
 package com.livecodebdd.controller;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +11,10 @@ import java.util.List;
 @RequestMapping("/api")
 public class ProductController {
 
+    List<String> products = new ArrayList<String>();
 
     @GetMapping("/products")
     public List<String> getAllProducts(){
-
-        List<String> products = new ArrayList<String>();
 
         products.add("Mouse");
         products.add("Keyboard");
@@ -26,5 +24,17 @@ public class ProductController {
         products.add("CellPhone");
 
         return products;
+    }
+
+    public void addRegisteredProduct(String product){
+        products.add(product);
+    }
+
+    public boolean isProductRegistered(String product){
+        return products.contains(product);
+    }
+
+    public int getProductCount(){
+        return products.size();
     }
 }
