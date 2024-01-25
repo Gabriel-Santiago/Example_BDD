@@ -111,4 +111,35 @@ public class StoreProductsSteps {
         assertEquals("The store should have three less product",
                 2, products.getProductCount());
     }
+
+    @Given("The store already has registered any products")
+    public void theStoreAlreadyHasRegisteredAnyProducts() {
+        products = new ProductController();
+        products.addRegisteredProduct("Webcam");
+        products.addRegisteredProduct("Notebook");
+        products.addRegisteredProduct("Mouse");
+    }
+
+    @And("The product {string} was registered in the store")
+    public void theProductWasRegisteredInTheStore(String arg0) {
+        assertTrue("The product {string} was registered in the store",
+                products.isProductRegistered(arg0));
+    }
+
+    @When("The user updates the product {string} to {string} in the store")
+    public void theUserUpdatesTheProductToInTheStore(String arg0, String arg1) {
+        products.updateProduct(arg0, arg1);
+    }
+
+    @Then("The product {string} should be in the store")
+    public void theProductShouldBeInTheStore(String arg0) {
+        assertTrue("The product {string} should be in the store",
+                products.isProductRegistered(arg0));
+    }
+
+    @And("The product {string} should no longer be in the store")
+    public void theProductShouldNoLongerBeInTheStore(String arg0) {
+        assertFalse("The product {string} should no longer be in the store",
+                products.isProductRegistered(arg0));
+    }
 }

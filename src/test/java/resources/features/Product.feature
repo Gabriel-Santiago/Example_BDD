@@ -19,3 +19,10 @@ Feature: Store Products
     When The user deletes the product "Power Bank" from the store
     Then The product "Power Bank" should be removed from the store
     And The store should have three less product
+
+  Scenario: Updating a product in the store
+    Given The store already has registered any products
+    And The product "Mouse" was registered in the store
+    When The user updates the product "Mouse" to "Wireless Mouse" in the store
+    Then The product "Wireless Mouse" should be in the store
+    And The product "Mouse" should no longer be in the store

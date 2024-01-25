@@ -1,7 +1,6 @@
 package com.livecodebdd.controller;
 
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -38,7 +37,14 @@ public class ProductController {
         return products.size();
     }
 
-    public boolean deleteProduct(String product){
-        return products.remove(product);
+    public void deleteProduct(String product){
+        products.remove(product);
+    }
+
+    public void updateProduct(String oldProduct, String newProduct){
+        if(isProductRegistered(oldProduct)){
+            int index = products.indexOf(oldProduct);
+            products.set(index, newProduct);
+        }
     }
 }
