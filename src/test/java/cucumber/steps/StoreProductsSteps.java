@@ -6,7 +6,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.spring.CucumberContextConfiguration;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,9 +105,9 @@ public class StoreProductsSteps {
                 products.isProductRegistered(arg0));
     }
 
-    @And("The store should have three less product")
-    public void theStoreShouldHaveThreeLessProduct() {
-        assertEquals("The store should have three less product",
+    @And("The store should have one less product")
+    public void theStoreShouldHaveOneLessProduct() {
+        assertEquals("The store should have one less product",
                 2, products.getProductCount());
     }
 

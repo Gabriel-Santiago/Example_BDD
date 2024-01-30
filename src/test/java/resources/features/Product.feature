@@ -18,7 +18,7 @@ Feature: Store Products
     And The product "Power Bank" is registered in the store
     When The user deletes the product "Power Bank" from the store
     Then The product "Power Bank" should be removed from the store
-    And The store should have three less product
+    And The store should have one less product
 
   Scenario: Updating a product in the store
     Given The store already has registered any products
