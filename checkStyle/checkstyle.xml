@@ -7,11 +7,10 @@
 <module name="Checker">
     <module name="TreeWalker">
         <module name="AvoidStarImport"/><!--1-->
-        <module name="CyclomaticComplexity">
-            <property name="max" value="4"/>
-            <property name="tokens" value="LITERAL_WHILE, LITERAL_DO"/>
-        </module><!--2-->
-        <module name="PackageName"/><!--3-->
+        <module name="CyclomaticComplexity"/><!--2-->
+        <module name="PackageName">
+            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+        </module><!--3-->
         <module name="ReturnCount">
             <property name="max" value="3"/>
         </module><!--4-->
